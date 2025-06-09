@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSécurité PME | Solutions Clés en Main</title>
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --secondary: #1a237e;
+            --accent: #4caf50;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            padding: 5rem 5%;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230d6efd" opacity="0.05"/><path d="M0 50 L100 50" stroke="%230d6efd" stroke-width="0.5" stroke-opacity="0.2"/><path d="M50 0 L50 100" stroke="%230d6efd" stroke-width="0.5" stroke-opacity="0.2"/></svg>');
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        
+        .cta-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .packages {
+            padding: 5rem 5%;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            font-size: 2.2rem;
+        }
+        
+        .packages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .package-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .features li:before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .faq {
+            padding: 5rem 5%;
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+        }
+        
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: #fcfcfc;
+            border-top: 1px solid #eee;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .faq-item.active .faq-question:after {
+            content: "-";
+        }
+        
+        .audit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalAppear 0.4s ease;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal-content h2 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            margin: 1.5rem 0;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .packages-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .package-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CyberGuard Pro</div>
+            <div class="nav-links">
+                <a href="#packages">Nos Offres</a>
+                <a href="#faq">FAQ Technique</a>
+                <a href="#audit">Audit Gratuit</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Sécurité Informatique sur Mesure pour les PME</h1>
+        <p>Protégez votre entreprise contre les cybermenaces avec nos solutions clés en main adaptées à votre budget et vos besoins spécifiques.</p>
+        <button class="cta-button" id="open-audit">Audit de Sécurité Gratuit</button>
+    </section>
+
+    <section class="packages" id="packages">
+        <h2 class="section-title">Nos Offres Packagées</h2>
+        <div class="packages-container">
+            <div class="package-card">
+                <h3>Protection Essentielle</h3>
+                <div class="price">€99<span>/mois</span></div>
+                <ul class="features">
+                    <li>Analyse de vulnérabilités mensuelle</li>
+                    <li>Pare-feu nouvelle génération</li>
+                    <li>Protection anti-malware</li>
+                    <li>Formation initiale des employés</li>
+                    <li>Support technique par email</li>
+                </ul>
+                <button class="cta-button">Choisir cette offre</button>
+            </div>
+            
+            <div class="package-card">
+                <h3>Sécurité Avancée</h3>
+                <div class="price">€249<span>/mois</span></div>
+                <ul class="features">
+                    <li>Tous les services de l'offre Essentielle</li>
+                    <li>Surveillance SIEM 24/7</li>
+                    <li>Tests d'intrusion trimestriels</li>
+                    <li>Gestion des correctifs critiques</li>
+                    <li>Support technique prioritaire 24/7</li>
+                    <li>Plan de reprise d'activité</li>
+                </ul>
+                <button class="cta-button">Choisir cette offre</button>
+            </div>
+            
+            <div class="package-card">
+                <h3>Protection Totale</h3>
+                <div class="price">€499<span>/mois</span></div>
+                <ul class="features">
+                    <li>Tous les services de l'offre Avancée</li>
+                    <li>Audit de sécurité complet annuel</li>
+                    <li>Détection et réponse gérées (MDR)</li>
+                    <li>Protection cloud et endpoints</li>
+                    <li>Simulations de phishing mensuelles</li>
+                    <li>Accès à un expert dédié</li>
+                    <li>Conformité RGPD incluse</li>
+                </ul>
+                <button class="cta-button">Choisir cette offre</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2 class="section-title">Questions Techniques Fréquentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">Comment se déroule l'audit de sécurité initial ?</div>
+                <div class="faq-answer">
+                    <p>Notre audit comprend une analyse automatisée des vulnérabilités, un scan de configuration réseau, une revue des politiques de sécurité et un entretien technique. Le rapport détaillé inclut une évaluation des risques et un plan d'action priorisé.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quelle est la durée d'implémentation typique ?</div>
+                <div class="faq-answer">
+                    <p>L'offre Essentielle est opérationnelle en 48h. Les solutions Avancée et Totale nécessitent 5 à 10 jours ouvrés selon la complexité de votre infrastructure. Nous minimisons les perturbations pendant le déploiement.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Comment gérez-vous les incidents de sécurité ?</div>
+                <div class="faq-answer">
+                    <p>Notre centre d'opérations de sécurité (SOC) intervient immédiatement en cas d'alerte : confinement de la menace, analyse forensique, récupération des données et rapport d'incident. Les offres Avancée et Totale incluent une garantie de temps de réponse.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Vos solutions sont-elles compatibles avec le télétravail ?</div>
+                <div class="faq-answer">
+                    <p>Absolument. Tous nos packages incluent la sécurisation des accès distants (VPN sécurisé, authentification MFA), la protection des terminaux nomades et des formations spécifiques sur les risques du télétravail.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Proposez-vous une garantie de conformité RGPD ?</div>
+                <div class="faq-answer">
+                    <p>L'offre Protection Totale inclut un accompagnement complet RGPD : cartographie des traitements, PIA, registre des activités et documentation technique. Nous fournissons les preuves d'audit nécessaires pour les autorités de contrôle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="audit-modal" id="audit-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Audit de Sécurité Gratuit</h2>
+            <p>Remplissez ce formulaire pour recevoir votre analyse de vulnérabilités personnalisée dans les 24h</p>
+            <form id="audit-form">
+                <div class="form-group">
+                    <label for="company">Nom de l'entreprise</label>
+                    <input type="text" id="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Votre nom</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email professionnel</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="employees">Nombre d'employés</label>
+                    <input type="number" id="employees" min="1" required>
+                </div>
+                <button type="submit" class="cta-button">Recevoir mon audit gratuit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>CyberGuard Pro - Sécurité pour PME</h3>
+            <div class="contact-info">
+                <p>contact@cyberguardpro.fr | +33 1 23 45 67 89</p>
+                <p>Paris | Lyon | Marseille</p>
+            </div>
+            <p class="copyright">© 2023 CyberGuard Pro. Tous droits réservés. Certifié ISO 27001</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion de la FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Gestion du modal d'audit
+        const auditModal = document.getElementById('audit-modal');
+        const openAuditBtn = document.getElementById('open-audit');
+        const closeModalBtn = document.getElementById('close-modal');
+        const auditForm = document.getElementById('audit-form');
+
+        openAuditBtn.addEventListener('click', () => {
+            auditModal.style.display = 'flex';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            auditModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === auditModal) {
+                auditModal.style.display = 'none';
+            }
+        });
+
+        auditForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci ! Votre demande d\'audit a été envoyée. Notre équipe vous contactera dans les 24 heures.');
+            auditModal.style.display = 'none';
+            auditForm.reset();
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
